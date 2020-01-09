@@ -25,6 +25,8 @@ import com.joaoborges.gildedrose.service.RetrieveInventoryService;
 import lombok.RequiredArgsConstructor;
 
 /**
+ * Unsecured controller responsible to retrieve the current inventory of items.
+ *
  * @author joaoborges
  */
 @RestController

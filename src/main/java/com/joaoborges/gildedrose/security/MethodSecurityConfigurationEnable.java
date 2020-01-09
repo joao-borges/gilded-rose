@@ -17,6 +17,8 @@ import org.springframework.security.config.annotation.method.configuration.Globa
 import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecurityExpressionHandler;
 
 /**
+ * Enable security for controllers by using authorization annotations.
+ *
  * @author joaoborges
  */
 @Configuration

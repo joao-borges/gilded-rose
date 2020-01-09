@@ -14,6 +14,8 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
+ * Item representation.
+ *
  * @author joaoborges
  */
 @Data

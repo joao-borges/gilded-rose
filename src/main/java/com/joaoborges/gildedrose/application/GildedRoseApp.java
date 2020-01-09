@@ -18,6 +18,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
+ * Main application class.
+ *
  * @author joaoborges
  */
 @SpringBootApplication
@@ -30,11 +32,6 @@ public class GildedRoseApp {
 
     @Bean
     public WebServerFactoryCustomizer<ConfigurableWebServerFactory> serverPortCustomizer() {
-        return new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
-            @Override
-            public void customize(ConfigurableWebServerFactory factory) {
-                factory.setPort(8081);
-            }
-        };
+        return factory -> factory.setPort(8081);
     }
 }

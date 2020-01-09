@@ -18,6 +18,8 @@ import com.joaoborges.gildedrose.model.Item;
 import lombok.RequiredArgsConstructor;
 
 /**
+ * Service handling the item purchase operation.
+ *
  * @author joaoborges
  */
 @Component

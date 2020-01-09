@@ -25,6 +25,8 @@ import com.joaoborges.gildedrose.service.BuyItemService;
 import lombok.RequiredArgsConstructor;
 
 /**
+ * Controller responsible to handle the buying items operation, containing the required security checks.
+ *
  * @author joaoborges
  */
 @RestController

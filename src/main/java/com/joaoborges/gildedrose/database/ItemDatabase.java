@@ -24,6 +24,8 @@ import com.joaoborges.gildedrose.model.Item;
 import lombok.Getter;
 
 /**
+ * Holds all possible items available to be sold.
+ *
  * @author joaoborges
  */
 @Component

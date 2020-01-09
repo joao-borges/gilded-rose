@@ -34,6 +34,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * Surge pricing implementation.
+ *
  * @author joaoborges
  */
 @Component

@@ -28,6 +28,8 @@ import com.joaoborges.gildedrose.model.Item;
 import lombok.Getter;
 
 /**
+ * Simple inventory database built from the item types.
+ *
  * @author joaoborges
  */
 @Component

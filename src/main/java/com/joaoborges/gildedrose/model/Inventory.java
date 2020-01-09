@@ -14,6 +14,8 @@ import lombok.Builder;
 import lombok.Data;
 
 /**
+ * Represents an item in the current inventory, holding their available quantity.
+ *
  * @author joaoborges
  */
 @Data

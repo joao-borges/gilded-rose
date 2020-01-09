@@ -20,6 +20,8 @@ import com.joaoborges.gildedrose.model.Inventory;
 import lombok.RequiredArgsConstructor;
 
 /**
+ * Inventory management.
+ *
  * @author joaoborges
  */
 @Component
