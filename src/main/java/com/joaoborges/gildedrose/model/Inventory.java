@@ -23,4 +23,9 @@ public class Inventory {
     private Item item;
     private int availableQuantity;
 
+    public Item itemSold(int quantity) {
+        availableQuantity-= quantity;
+        return Item.builder().name(item.getName()).description(item.getDescription()).build();
+    }
+
 }

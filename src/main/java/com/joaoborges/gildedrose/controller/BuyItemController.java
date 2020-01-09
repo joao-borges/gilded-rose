@@ -10,17 +10,16 @@
  */
 package com.joaoborges.gildedrose.controller;
 
-import java.util.List;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.joaoborges.gildedrose.database.InventoryDatabase;
-import com.joaoborges.gildedrose.model.Inventory;
+import com.joaoborges.gildedrose.model.Item;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,18 +27,16 @@ import lombok.RequiredArgsConstructor;
  * @author joaoborges
  */
 @RestController
-@RequestMapping("/api/inventory")
+@RequestMapping("/api/buy")
 @ResponseBody
 @RequiredArgsConstructor
 @Validated
-public class RetrieveInventoryController {
+public class BuyItemController {
 
     private final InventoryDatabase inventoryDatabase;
 
-    @GetMapping("")
-    public ResponseEntity<List<Inventory>> retrieveAvailableInventory() {
-        return ResponseEntity.ok(inventoryDatabase.getInventories());
+    @GetMapping("/{itemName}")
+    public ResponseEntity<Item> buy(@PathVariable String itemName) {
+        return ResponseEntity.ok(inventoryDatabase.buyItem(itemName));
     }
-
 }
-

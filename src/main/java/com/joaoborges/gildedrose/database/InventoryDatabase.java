@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.joaoborges.gildedrose.model.Inventory;
+import com.joaoborges.gildedrose.model.Item;
 
 import lombok.Getter;
 
@@ -38,5 +39,14 @@ public class InventoryDatabase implements InitializingBean {
     @Override
     public void afterPropertiesSet() {
         inventories = itemDatabase.getItems().stream().map(item -> Inventory.builder().item(item).availableQuantity(nextInt(1, 51)).build()).collect(toUnmodifiableList());
+    }
+
+    public synchronized Item buyItem(String itemName) {
+        Inventory inventory = inventories.stream()
+                .filter(i -> i.getItem().getName().equals(itemName))
+                .filter(i -> i.getAvailableQuantity() > 0)
+                .findFirst().orElseThrow(() -> new RuntimeException("Item " + itemName + " is not available in the inventory"));
+
+        return inventory.itemSold(1);
     }
 }
