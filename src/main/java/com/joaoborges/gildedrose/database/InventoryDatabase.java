@@ -44,7 +44,7 @@ public class InventoryDatabase implements InitializingBean {
         inventories = itemDatabase.getItems().stream().map(item -> Inventory.builder().item(item).availableQuantity(nextInt(1, 51)).build()).collect(toUnmodifiableList());
     }
 
-    public synchronized Item buyItem(String itemName) {
+    public synchronized Item getItemIfAvailable(String itemName) {
         Optional<Inventory> inventory = inventories.stream()
                 .filter(i -> i.getItem().getName().equals(itemName))
                 .findFirst();

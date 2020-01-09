@@ -10,7 +10,11 @@
  */
 package com.joaoborges.gildedrose.database;
 
+import static java.util.stream.Collectors.toList;
+import static org.apache.commons.lang3.RandomUtils.nextInt;
+
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
@@ -30,18 +34,9 @@ public class ItemDatabase implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() {
-        items = List.of(
-                Item.builder().name("Item1").description("This is a very nice item").price(10).build(),
-                Item.builder().name("Item2").description("This is a very nice item").price(20).build(),
-                Item.builder().name("Item3").description("This is a very nice item").price(30).build(),
-                Item.builder().name("Item4").description("This is a very nice item").price(40).build(),
-                Item.builder().name("Item5").description("This is a very nice item").price(50).build(),
-                Item.builder().name("Item6").description("This is a very nice item").price(60).build(),
-                Item.builder().name("Item7").description("This is a very nice item").price(70).build(),
-                Item.builder().name("Item8").description("This is a very nice item").price(80).build(),
-                Item.builder().name("Item9").description("This is a very nice item").price(90).build(),
-                Item.builder().name("Item10").description("This is a very nice item").price(100).build()
-        );
+        items = IntStream.range(0, 20)
+                .mapToObj(index -> Item.builder().name("Item" + (index + 1)).description("Item type " + (index + 1)).price(nextInt(0, 100)).build())
+                .collect(toList());
     }
 
 }

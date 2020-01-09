@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joaoborges.gildedrose.database.InventoryDatabase;
 import com.joaoborges.gildedrose.model.Inventory;
+import com.joaoborges.gildedrose.service.RetrieveInventoryService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,11 +34,11 @@ import lombok.RequiredArgsConstructor;
 @Validated
 public class RetrieveInventoryController {
 
-    private final InventoryDatabase inventoryDatabase;
+    private final RetrieveInventoryService retrieveInventoryService;
 
     @GetMapping("")
     public ResponseEntity<List<Inventory>> retrieveAvailableInventory() {
-        return ResponseEntity.ok(inventoryDatabase.getInventories());
+        return ResponseEntity.ok(retrieveInventoryService.retrieve());
     }
 
 }

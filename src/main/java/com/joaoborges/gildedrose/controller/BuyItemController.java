@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.joaoborges.gildedrose.database.InventoryDatabase;
 import com.joaoborges.gildedrose.model.Item;
+import com.joaoborges.gildedrose.service.BuyItemService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,12 +34,12 @@ import lombok.RequiredArgsConstructor;
 @Validated
 public class BuyItemController {
 
-    private final InventoryDatabase inventoryDatabase;
+    private final BuyItemService buyItemService;
 
     @GetMapping("/{itemName}")
     @PreAuthorize("#oauth2.hasScope('buyer')")
     public ResponseEntity<Item> buy(@PathVariable String itemName) {
-        Item item = inventoryDatabase.buyItem(itemName);
+        Item item = buyItemService.buyItem(itemName);
         return ResponseEntity.ok(item);
     }
 }
