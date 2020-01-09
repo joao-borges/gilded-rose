@@ -14,10 +14,13 @@ import static java.util.stream.Collectors.toUnmodifiableList;
 import static org.apache.commons.lang3.RandomUtils.nextInt;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.joaoborges.gildedrose.model.Inventory;
 import com.joaoborges.gildedrose.model.Item;
@@ -42,11 +45,18 @@ public class InventoryDatabase implements InitializingBean {
     }
 
     public synchronized Item buyItem(String itemName) {
-        Inventory inventory = inventories.stream()
+        Optional<Inventory> inventory = inventories.stream()
                 .filter(i -> i.getItem().getName().equals(itemName))
-                .filter(i -> i.getAvailableQuantity() > 0)
-                .findFirst().orElseThrow(() -> new RuntimeException("Item " + itemName + " is not available in the inventory"));
+                .findFirst();
 
-        return inventory.itemSold(1);
+        if (inventory.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item " + itemName + " does not exist");
+        }
+
+        if (inventory.get().getAvailableQuantity() == 0) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item " + itemName + " is out of stock");
+        }
+
+        return inventory.get().itemSold(1);
     }
 }

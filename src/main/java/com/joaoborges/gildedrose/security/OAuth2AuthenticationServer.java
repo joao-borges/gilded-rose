@@ -42,9 +42,9 @@ public class OAuth2AuthenticationServer extends AuthorizationServerConfigurerAda
         clients.inMemory() // memory client store
                 .withClient("buyer-client") // allow buyer clients
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token", "implicit")
-                .authorities("ROLE_BUYER")
-                .scopes("read", "write")
+                .scopes("buyer")
                 .autoApprove(true)
+                .accessTokenValiditySeconds(180)
                 .secret(passwordEncoder().encode("password"));
     }
 
